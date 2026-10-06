@@ -4,7 +4,7 @@ All notable changes to INTERSECT will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [0.17.0]
 
 ### Added
 - MIDI export button in the header bar (next to **SAVE**): drag the **MIDI** button out of the plugin window to drop a `.mid` file into your DAW, or right-click it to save the file via a file browser. The file contains every active slice as a note (its MIDI note, timed from its position in the sample, velocity from its volume) plus the kit tempo, so dropping it on a DAW timeline creates a playable MIDI clip of the whole pattern.
