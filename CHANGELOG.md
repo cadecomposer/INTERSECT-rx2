@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- MIDI export button in the header bar (next to **SAVE**): drag the **MIDI** button out of the plugin window to drop a `.mid` file into your DAW, or right-click it to save the file via a file browser. The file contains every active slice as a note (its MIDI note, timed from its position in the sample, velocity from its volume) plus the kit tempo, so dropping it on a DAW timeline creates a playable MIDI clip of the whole pattern.
 - REX2 (`.rx2`) loop import, decoded with the [VelociLoops](https://github.com/kunitoki/VelociLoops) library. Drop a `.rx2` file (or open it via **FILES** / the open dialog) and INTERSECT loads the full loop and automatically recreates every slice embedded in the REX2 metadata, including the loop's tempo as the kit BPM. `.rx2` files also work in the file browser (waveform preview and audition), in multi-file sessions, and inside presets.
 
 ### Fixed

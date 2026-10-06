@@ -1,4 +1,8 @@
-# INTERSECT
+# INTERSECT (RX2 + MIDI fork)
+
+## Disclaimer - This fork was made with the assistance of AI.
+
+I forked this project because I didn't really feel comfortable making a PR; if I actually wrote it myself then I probably would have made a PR. I don't know how to write code and I just threw this together with Pi Coding Agent. So I can't really comment on the quality of the code, and I can't promise to maintain it; I just wanted to have this feature for my music production workflow on Linux with REAPER. It happens to work for my use case, and this at least demonstrates that it's possible. In any case, I did still want to share this at least, just in case someone else finds this useful. I spent a lot of time trying to find something that already had this functionality, and needless to say I couldn't find anything.
 
 **Full documentation:** <https://tucktuckg00se.github.io/INTERSECT/>
 
@@ -7,6 +11,8 @@
 INTERSECT is a sample slicer instrument plugin (VST3/AU/Standalone) with multi-sample sessions, per-slice locking, slice note ranges, multiple time/pitch algorithms, and MIDI-triggered slice playback.
 
 This fork adds **REX2 (`.rx2`) loop import** via the [VelociLoops](https://github.com/kunitoki/VelociLoops) library: loading a `.rx2` file decodes the full loop and automatically creates a slice for every slice embedded in the REX2 metadata, with the loop tempo applied as the kit BPM.
+
+It also adds **MIDI export**: a **MIDI** button in the header bar (next to SAVE). Drag it out of the plugin window to drop a `.mid` file into your DAW, or right-click it to save the file via a file browser. The exported file contains every active slice as a note — its assigned MIDI note, timed from its position in the sample, with velocity taken from its volume — plus the kit tempo, so dropping it on a DAW timeline creates a playable MIDI clip of the whole pattern.
 
 ![INTERSECT screenshot](.github/assets/screenshot.png)
 *Theme shown: Open Color (`oc.intersectstyle`)*
