@@ -3031,22 +3031,27 @@ void IntersectProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
                 // REX2 import: recreate the slices embedded in the loop metadata.
                 // Fresh loads only — state restores and relinks keep their existing slices.
+                // Read via sampleData: `decoded` was moved into it above.
                 if (! isStateRestoreLoad
-                    && ! decoded->importedSlices.empty()
                     && (currentLoadKind == LoadKindReplace || currentLoadKind == LoadKindPreserveSlices))
                 {
-                    for (const auto& imp : decoded->importedSlices)
+                    const auto& importedSlices = sampleData.getImportedSlices();
+                    if (! importedSlices.empty())
                     {
-                        const int idx = sliceManager.createSlice (imp.startSample, imp.endSample);
-                        if (idx < 0)
-                            break;   // kMaxSlices reached
-                        Slice& s = sliceManager.getSlice (idx);
-                        s.bpm = decoded->importedTempoBpm > 0.0f ? decoded->importedTempoBpm : 120.0f;
-                    }
+                        const float tempo = sampleData.getImportedTempoBpm();
+                        for (const auto& imp : importedSlices)
+                        {
+                            const int idx = sliceManager.createSlice (imp.startSample, imp.endSample);
+                            if (idx < 0)
+                                break;   // kMaxSlices reached
+                            Slice& s = sliceManager.getSlice (idx);
+                            s.bpm = tempo > 0.0f ? tempo : 120.0f;
+                        }
 
-                    if (decoded->importedTempoBpm > 0.0f && bpmParam != nullptr)
-                        bpmParam->store (juce::jlimit (20.0f, 999.0f, decoded->importedTempoBpm),
-                                         std::memory_order_relaxed);
+                        if (tempo > 0.0f && bpmParam != nullptr)
+                            bpmParam->store (juce::jlimit (20.0f, 999.0f, tempo),
+                                             std::memory_order_relaxed);
+                    }
                 }
 
                 if (isStateRestoreLoad)

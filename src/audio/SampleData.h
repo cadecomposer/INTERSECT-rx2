@@ -95,6 +95,11 @@ public:
     int getNumSessionSamples() const;
     const SessionSample* findSessionSampleById (int sampleId) const;
 
+    // REX2 import metadata of the active sample (empty when not a REX2 load).
+    // Audio-thread only, like getSessionSamples().
+    const std::vector<DecodedSample::ImportedSlice>& getImportedSlices() const;
+    float getImportedTempoBpm() const;
+
     // Audio-thread only — returns the buffer from the active decoded sample.
     const juce::AudioBuffer<float>& getBuffer() const;
 

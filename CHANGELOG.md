@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 - REX2 (`.rx2`) loop import, decoded with the [VelociLoops](https://github.com/kunitoki/VelociLoops) library. Drop a `.rx2` file (or open it via **FILES** / the open dialog) and INTERSECT loads the full loop and automatically recreates every slice embedded in the REX2 metadata, including the loop's tempo as the kit BPM. `.rx2` files also work in the file browser (waveform preview and audition), in multi-file sessions, and inside presets.
 
+### Fixed
+- Crash when opening a `.rx2` file: the audio thread read the imported-slice list from the decoded sample *after* its buffer ownership had been moved into `SampleData`, dereferencing a dead pointer. The metadata is now read through `SampleData` after the swap, and a regression test (`tests/processor_rx2_test.cpp`) drives the full load path through `processBlock`.
+
 ## [0.16.0] - 2026-09-21
 
 ### Added

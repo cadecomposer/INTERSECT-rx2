@@ -372,6 +372,19 @@ const std::vector<SampleData::SessionSample>& SampleData::getSessionSamples() co
     return empty;
 }
 
+const std::vector<SampleData::DecodedSample::ImportedSlice>& SampleData::getImportedSlices() const
+{
+    static const std::vector<DecodedSample::ImportedSlice> empty;
+    if (activeDecoded)
+        return activeDecoded->importedSlices;
+    return empty;
+}
+
+float SampleData::getImportedTempoBpm() const
+{
+    return activeDecoded != nullptr ? activeDecoded->importedTempoBpm : 0.0f;
+}
+
 float SampleData::interpolateCubic (float y0, float y1, float y2, float y3, float frac)
 {
     const float a0 = -0.5f * y0 + 1.5f * y1 - 1.5f * y2 + 0.5f * y3;
