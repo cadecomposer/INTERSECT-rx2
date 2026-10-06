@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- REX2 (`.rx2`) loop import, decoded with the [VelociLoops](https://github.com/kunitoki/VelociLoops) library. Drop a `.rx2` file (or open it via **FILES** / the open dialog) and INTERSECT loads the full loop and automatically recreates every slice embedded in the REX2 metadata, including the loop's tempo as the kit BPM. `.rx2` files also work in the file browser (waveform preview and audition), in multi-file sessions, and inside presets.
+
 ## [0.16.0] - 2026-09-21
 
 ### Added

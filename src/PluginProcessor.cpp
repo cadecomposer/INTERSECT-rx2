@@ -3029,6 +3029,26 @@ void IntersectProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                     sliceManager.rebuildMidiMap();
                 }
 
+                // REX2 import: recreate the slices embedded in the loop metadata.
+                // Fresh loads only — state restores and relinks keep their existing slices.
+                if (! isStateRestoreLoad
+                    && ! decoded->importedSlices.empty()
+                    && (currentLoadKind == LoadKindReplace || currentLoadKind == LoadKindPreserveSlices))
+                {
+                    for (const auto& imp : decoded->importedSlices)
+                    {
+                        const int idx = sliceManager.createSlice (imp.startSample, imp.endSample);
+                        if (idx < 0)
+                            break;   // kMaxSlices reached
+                        Slice& s = sliceManager.getSlice (idx);
+                        s.bpm = decoded->importedTempoBpm > 0.0f ? decoded->importedTempoBpm : 120.0f;
+                    }
+
+                    if (decoded->importedTempoBpm > 0.0f && bpmParam != nullptr)
+                        bpmParam->store (juce::jlimit (20.0f, 999.0f, decoded->importedTempoBpm),
+                                         std::memory_order_relaxed);
+                }
+
                 if (isStateRestoreLoad)
                     pendingStateRestoreToken.store (0, std::memory_order_release);
 

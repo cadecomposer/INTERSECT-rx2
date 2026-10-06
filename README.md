@@ -6,6 +6,8 @@
 
 INTERSECT is a sample slicer instrument plugin (VST3/AU/Standalone) with multi-sample sessions, per-slice locking, slice note ranges, multiple time/pitch algorithms, and MIDI-triggered slice playback.
 
+This fork adds **REX2 (`.rx2`) loop import** via the [VelociLoops](https://github.com/kunitoki/VelociLoops) library: loading a `.rx2` file decodes the full loop and automatically creates a slice for every slice embedded in the REX2 metadata, with the loop tempo applied as the kit BPM.
+
 ![INTERSECT screenshot](.github/assets/screenshot.png)
 *Theme shown: Open Color (`oc.intersectstyle`)*
 

@@ -50,6 +50,16 @@ public:
         int sourceNumFrames = 0;
         double sourceSampleRate = 0.0;
         std::vector<SessionSample> sessionSamples;
+
+        // Populated only when the load includes a REX2 file: the slice boundaries
+        // embedded in the REX2 metadata, as absolute frame offsets into `buffer`.
+        struct ImportedSlice
+        {
+            int startSample = 0;
+            int endSample   = 0;
+        };
+        std::vector<ImportedSlice> importedSlices;
+        float importedTempoBpm = 0.0f;   // loop tempo from the REX2 header
     };
 
     using SnapshotPtr = std::shared_ptr<const DecodedSample>;

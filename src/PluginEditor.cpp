@@ -545,7 +545,7 @@ void IntersectEditor::openFileDialog()
     openChooser = std::make_unique<juce::FileChooser> (
         "Open Audio or Preset",
         browser.getCurrentFolder(),
-        "*.wav;*.ogg;*.aiff;*.aif;*.flac;*.mp3;*" + juce::String (AppFiles::kPresetExtension));
+        "*.wav;*.ogg;*.aiff;*.aif;*.flac;*.mp3;*.rx2;*" + juce::String (AppFiles::kPresetExtension));
 
     openChooser->launchAsync (juce::FileBrowserComponent::openMode
                                   | juce::FileBrowserComponent::canSelectFiles
