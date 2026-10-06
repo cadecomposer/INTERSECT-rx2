@@ -2,6 +2,8 @@
 
 A fork of [tucktuckg00se/INTERSECT](https://github.com/tucktuckg00se/INTERSECT) with REX2 loop import and MIDI export.
 
+https://github.com/user-attachments/assets/7ac2714c-6cd7-4375-9bfa-ae69f33dc641
+
 ## Disclaimer - This fork was made with the assistance of AI.
 
 I forked this project because I didn't really feel comfortable making a PR; if I actually wrote it myself then I probably would have made a PR. I don't know how to write code and I just threw this together with Pi Coding Agent. So I can't really comment on the quality of the code, and I can't promise to maintain it; I just wanted to have this feature for my music production workflow on Linux with REAPER. It happens to work for my use case, and this at least demonstrates that it's possible. In any case, I did still want to share this at least, just in case someone else finds this useful. I spent a lot of time trying to find something that already had this functionality, and needless to say I couldn't find anything.
